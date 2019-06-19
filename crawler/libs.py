@@ -12,7 +12,7 @@ def read_csv():
         line_count = 0
         current_index = 0
         for row in csv_reader:
-            if line_count != 0 and :
+            if line_count != 0:
                 list_of_words.append(row[0])
                 if (current_index > 278) and (row[0] not in list_of_words):
                     print(current_index, row[0])
