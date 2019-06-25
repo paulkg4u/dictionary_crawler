@@ -34,7 +34,7 @@ def fetch_word(word):
         audio_links = pronounciation_details.get('audio',[])
         pronounciations = pronounciation_details.get('text', [])
         new_word = Word.objects.create(
-            word = each_word,
+            word_english = each_word,
             pronounciations = pronounciations,
             audio_links = audio_links
         )
@@ -44,7 +44,7 @@ def fetch_word(word):
             for language_code in each_translation.get('available_translations'):
                 for each_local_word in each_translation.get('available_translations').get(language_code):
                     Translation.objects.create(
-                        word = new_word,
+                        english_word = new_word,
                         meaning = meaning,
                         local_word = each_local_word,
                         utf_encoded = each_local_word.encode('utf-8'),
@@ -60,7 +60,7 @@ def fetch_word(word):
                 if each_related.get('relationshipType','') == 'synonyms':
                     synonyms = each_related.get('words',[])
             new_word_definition = WordDefinition.objects.create(
-                word = new_word,
+                english_word = new_word,
                 definitions = definition_text,
                 priority = priority,
                 part_of_speech = part_of_speech,
